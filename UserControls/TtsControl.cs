@@ -13,7 +13,6 @@ namespace SoundBoard
     {
         public int Index { get; set; }
         public string Setting => _textBox.Text;
-
         public TtsControl()
         {
             InitializeComponent();
@@ -24,13 +23,11 @@ namespace SoundBoard
             _n.Text = (x + 1).ToString();
             _textBox.Text = txt;
         }
-
         private class Voice
         {
             public string Name { get; set; }
             public InstalledVoice Value { get; set; }
         }
-
         protected override void OnLoad(EventArgs e)
         {
             using (var speechSynthesizer = new SpeechSynthesizer())
@@ -51,13 +48,11 @@ namespace SoundBoard
 
             base.OnLoad(e);
         }
-
         private void OnButtonClick(object sender, EventArgs e)
         {
             _button.Enabled = false;
             Speak(_textBox.Text, () => { _button.Invoke(new MethodInvoker(() => { _button.Enabled = true; })); });
         }
-
         private void Speak(string textToSpeak, Action callback = null)
         {
             if (string.IsNullOrEmpty(textToSpeak)) { callback?.Invoke(); return; }

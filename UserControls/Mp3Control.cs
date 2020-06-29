@@ -12,7 +12,6 @@ namespace SoundBoard
     {
         public int Index { get; set; }
         public string Setting => _textBox.Text;
-
         public Mp3Control()
         {
             InitializeComponent();
@@ -23,13 +22,11 @@ namespace SoundBoard
             _n.Text = (x+1).ToString();
             _textBox.Text = txt;
         }
-
         private void OnButtonClick(object sender, EventArgs e)
         {
             _button.Enabled = false;
             Play(_textBox.Text, () => { _button.Invoke(new MethodInvoker(() => { _button.Enabled = true; })); });
         }
-
         private void Play(string filename, Action callback = null)
         { 
             if (string.IsNullOrEmpty(filename)) { callback?.Invoke(); return; }
@@ -59,8 +56,7 @@ namespace SoundBoard
                 }
             });
         }
-
-        private void _openFileButton_Click(object sender, EventArgs e)
+        private void OnOpenFileClick(object sender, EventArgs e)
         {
             var ofd = new OpenFileDialog();
             if (ofd.ShowDialog() == DialogResult.OK)

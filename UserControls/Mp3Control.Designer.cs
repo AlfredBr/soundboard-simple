@@ -70,7 +70,7 @@
             this._openFileButton.TabStop = false;
             this._openFileButton.Text = "...";
             this._openFileButton.UseVisualStyleBackColor = false;
-            this._openFileButton.Click += new System.EventHandler(this._openFileButton_Click);
+            this._openFileButton.Click += new System.EventHandler(this.OnOpenFileClick);
             // 
             // _n
             // 

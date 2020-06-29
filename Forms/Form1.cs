@@ -17,6 +17,8 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
+#pragma warning disable CS0164
+
 namespace SoundBoard
 {
     public partial class SoundboardForm : Form
@@ -34,7 +36,6 @@ namespace SoundBoard
             var assemblyName = Assembly.GetExecutingAssembly().GetName().Name;
             _iniFile = $"{assemblyName}.ini";
         }
-
         public void SaveSetting(Control control)
         {
             Debug.WriteLine("SaveSetting");
@@ -51,9 +52,8 @@ namespace SoundBoard
                 _mp3Settings.Add(ctl.Index, ctl.Setting.Trim());
             }
         }
-
         private void OnFormLoad(object sender, EventArgs e)
-        {                
+        {
             var tabIndex = 0;
             var numberOfControls = 16;
 
@@ -79,7 +79,7 @@ namespace SoundBoard
                 }
             }
 
-            Tts:
+        Tts:
             {
                 _ttsPanel.Controls.Clear();
                 var controls = new List<Control>();
@@ -91,12 +91,12 @@ namespace SoundBoard
                     control.TabIndex = tabIndex++;
                     controls.Add(control);
                 }
-                controls.Reverse();            
+                controls.Reverse();
                 _ttsPanel.Controls.AddRange(controls.ToArray());
                 _ttsPanel.VerticalScroll.Value = 0;
             }
 
-            Mp3:
+        Mp3:
             {
                 _mp3Panel.Controls.Clear();
                 var controls = new List<Control>();
@@ -115,22 +115,22 @@ namespace SoundBoard
         }
         private void OnFormClosing(object sender, FormClosingEventArgs e)
         {
-            foreach(TtsControl ctl in _ttsPanel.Controls)
+            foreach (TtsControl ctl in _ttsPanel.Controls)
             {
                 SaveSetting(ctl);
             }
-            foreach(Mp3Control ctl in _mp3Panel.Controls)
+            foreach (Mp3Control ctl in _mp3Panel.Controls)
             {
                 SaveSetting(ctl);
             }
 
             var stringbuilder = new StringBuilder();
-            foreach(var key in _ttsSettings.Keys.OrderBy(t => t))
+            foreach (var key in _ttsSettings.Keys.OrderBy(t => t))
             {
                 var val = _ttsSettings[key];
                 stringbuilder.AppendLine($"TTS\t{key}\t{val}");
             }
-            foreach(var key in _mp3Settings.Keys.OrderBy(t => t))
+            foreach (var key in _mp3Settings.Keys.OrderBy(t => t))
             {
                 var val = _mp3Settings[key];
                 stringbuilder.AppendLine($"MP3\t{key}\t{val}");

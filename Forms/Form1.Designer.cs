@@ -74,13 +74,13 @@
             // 
             this._splitContainer.Panel1.Controls.Add(this._ttsPanel);
             this._splitContainer.Panel1.Controls.Add(this._ttsLabel);
-            this._splitContainer.Panel1.Padding = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this._splitContainer.Panel1.Padding = new System.Windows.Forms.Padding(6);
             // 
             // _splitContainer.Panel2
             // 
             this._splitContainer.Panel2.Controls.Add(this._mp3Panel);
             this._splitContainer.Panel2.Controls.Add(this._mp3Label);
-            this._splitContainer.Panel2.Padding = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this._splitContainer.Panel2.Padding = new System.Windows.Forms.Padding(6);
             this._splitContainer.Size = new System.Drawing.Size(1098, 1042);
             this._splitContainer.SplitterDistance = 520;
             this._splitContainer.SplitterWidth = 6;
