@@ -1,0 +1,15 @@
+D:\Users\Alfred\Documents\GitHub\soundboard-simple\obj\Debug\SoundBoard.csprojAssemblyReference.cache
+D:\Users\Alfred\Documents\GitHub\soundboard-simple\obj\Debug\SoundBoard.SoundboardForm.resources
+D:\Users\Alfred\Documents\GitHub\soundboard-simple\obj\Debug\SoundBoard.Mp3Control.resources
+D:\Users\Alfred\Documents\GitHub\soundboard-simple\obj\Debug\SoundBoard.Properties.Resources.resources
+D:\Users\Alfred\Documents\GitHub\soundboard-simple\obj\Debug\SoundBoard.TtsControl.resources
+D:\Users\Alfred\Documents\GitHub\soundboard-simple\obj\Debug\SoundBoard.csproj.GenerateResource.cache
+D:\Users\Alfred\Documents\GitHub\soundboard-simple\obj\Debug\SoundBoard.csproj.CoreCompileInputs.cache
+D:\Users\Alfred\Documents\GitHub\soundboard-simple\bin\Debug\SoundBoard.exe.config
+D:\Users\Alfred\Documents\GitHub\soundboard-simple\bin\Debug\SoundBoard.exe
+D:\Users\Alfred\Documents\GitHub\soundboard-simple\bin\Debug\SoundBoard.pdb
+D:\Users\Alfred\Documents\GitHub\soundboard-simple\bin\Debug\NAudio.dll
+D:\Users\Alfred\Documents\GitHub\soundboard-simple\bin\Debug\NAudio.xml
+D:\Users\Alfred\Documents\GitHub\soundboard-simple\obj\Debug\SoundBoard.csproj.CopyComplete
+D:\Users\Alfred\Documents\GitHub\soundboard-simple\obj\Debug\SoundBoard.exe
+D:\Users\Alfred\Documents\GitHub\soundboard-simple\obj\Debug\SoundBoard.pdb
