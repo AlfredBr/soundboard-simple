@@ -17,6 +17,9 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
+using NAudio.CoreAudioApi;
+using NAudio.Wave;
+
 #pragma warning disable CS0164
 
 namespace SoundBoard
@@ -52,10 +55,74 @@ namespace SoundBoard
                 _mp3Settings.Add(ctl.Index, ctl.Setting.Trim());
             }
         }
+
+        private void EnumerateInputDevices()
+        {
+            Console.WriteLine("EnumerateInputDevices");
+            //create enumerator
+            var enumerator = new MMDeviceEnumerator();
+            //cycle through all audio capture devices
+            for (int i = 0; i < WaveIn.DeviceCount; i++)
+            {
+                Console.WriteLine($"<== {i} {enumerator.EnumerateAudioEndPoints(DataFlow.Capture, DeviceState.Active)[i]}");
+            }
+            //clean up
+            enumerator.Dispose();
+        }
+
+        private int _waveOutDeviceNumber;
+        public int GetWaveOutDeviceNumber()
+        {
+            return _waveOutDeviceNumber;
+        }
+
+        private void EnumerateOutputDevices()
+        {
+            Console.WriteLine("EnumerateOutputDevices");
+            //create enumerator
+            var enumerator = new MMDeviceEnumerator();
+            //cycle trough all audio render devices
+            for (int i = 0; i < WaveOut.DeviceCount; i++)
+            {
+                Console.WriteLine($"==> {i} {enumerator.EnumerateAudioEndPoints(DataFlow.Render, DeviceState.Active)[i]}");
+            }
+            //clean up
+            enumerator.Dispose();
+
+
+            Console.WriteLine("DirectSoundOut");
+            foreach (var dev in DirectSoundOut.Devices)
+            {
+                Console.WriteLine($"{dev.Guid} {dev.ModuleName} {dev.Description}");
+            }
+        }
+
+        private void OutputDeviceSelectors()
+        {
+            _comboBoxWaveOut.Items.Clear();
+
+            using (var enumerator = new MMDeviceEnumerator())
+            {
+                for (int i = 0; i < WaveOut.DeviceCount; i++)
+                {
+                    var name = $"{enumerator.EnumerateAudioEndPoints(DataFlow.Render, DeviceState.Active)[i]}";
+                    var value = i;
+
+                    _comboBoxWaveOut.DisplayMember = "Name";
+                    _comboBoxWaveOut.Items.Add(new { Name = name, Value = value });
+                    _comboBoxWaveOut.SelectedIndex = 0;
+                    _comboBoxWaveOut.SelectedIndexChanged += (o, e) => _waveOutDeviceNumber = ((dynamic)_comboBoxWaveOut.SelectedItem).Value;
+                }
+            }
+        }
         private void OnFormLoad(object sender, EventArgs e)
         {
             var tabIndex = 0;
             var numberOfControls = 16;
+
+            //EnumerateInputDevices();
+            //EnumerateOutputDevices();
+            OutputDeviceSelectors();
 
             if (File.Exists(_iniFile))
             {

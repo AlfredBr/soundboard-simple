@@ -71,12 +71,12 @@ namespace SoundBoard
                             speechSynthesizer.Speak(textToSpeak);
                             stream.Position = 0;
 
-                            using (WaveStream blockAlignedStream = 
+                            using (WaveStream blockAlignedStream =
                                 new BlockAlignReductionStream(WaveFormatConversionStream.CreatePcmStream(
                                     new WaveFileReader(stream))))
                             {
                                 var autoResetEvent = new AutoResetEvent(false);
-                                var waveOut = new WaveOutEvent();
+                                var waveOut = new WaveOutEvent { DeviceNumber = GetWaveOutDeviceNumber() };
                                 waveOut.Init(blockAlignedStream);
                                 waveOut.PlaybackStopped += (e,o) => { 
                                     Debug.WriteLine("nAudio: Stopped Speaking");
@@ -96,5 +96,7 @@ namespace SoundBoard
                 // nop
             }
         }
+
+        private int GetWaveOutDeviceNumber() => ((SoundboardForm)this.ParentForm).GetWaveOutDeviceNumber();
     }
 }

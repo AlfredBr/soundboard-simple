@@ -41,7 +41,7 @@ namespace SoundBoard
                                         new Mp3FileReader(stream))))
                 {
                     var autoResetEvent = new AutoResetEvent(false);
-                    var waveOut = new WaveOutEvent();
+                    var waveOut = new WaveOutEvent { DeviceNumber = GetWaveOutDeviceNumber() };
                     waveOut.Init(blockAlignedStream);
                     waveOut.PlaybackStopped += (_, o) =>
                     {
@@ -64,5 +64,7 @@ namespace SoundBoard
                 _textBox.Text = ofd.FileName;
             }
         }
+
+        private int GetWaveOutDeviceNumber() => ((SoundboardForm)this.ParentForm).GetWaveOutDeviceNumber();
     }
 }
